@@ -5,13 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketreserver.databinding.LaunchItemBinding
 
-class LaunchListAdapter() :
-    RecyclerView.Adapter<LaunchListAdapter.ViewHolder>() {
+class LaunchListAdapter(
+    val launches : List<LaunchListQuery.Launch>
+) : RecyclerView.Adapter<LaunchListAdapter.ViewHolder>() {
+
 
     class ViewHolder(val binding: LaunchItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemCount(): Int {
-        return 0
+        return launches.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,5 +22,7 @@ class LaunchListAdapter() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val launch = launches.get(position)
+        holder.binding.site.text = launch.site ?: "Launch site unknown"
     }
 }

@@ -1,12 +1,13 @@
+val kotlin_version by extra("1.4.0")
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.apollographql.apollo").version("2.5.2")
 }
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
 
     defaultConfig {
         applicationId = "com.example.rocketreserver"
@@ -24,6 +25,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -33,6 +35,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version")
+
+    implementation ("com.apollographql.apollo:apollo-runtime:2.5.2")
+    implementation ("com.apollographql.apollo:apollo-coroutines-support:2.5.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.core:core-ktx:1.3.0")
@@ -49,4 +55,9 @@ dependencies {
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+
+}
+
+apollo {
+    generateKotlinModels.set(true)
 }
