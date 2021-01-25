@@ -2,6 +2,7 @@ package com.example.rocketreserver.Data
 
 import android.util.Log
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.await
 import com.example.rocketreserver.LaunchListQuery
 
@@ -11,9 +12,9 @@ class Apollo {
         .serverUrl(graphqlURL)
         .build()
 
-    suspend fun queryLaunches() : List<LaunchListQuery.Launch>?{
+    suspend fun queryLaunches(cursor : String?) : LaunchListQuery.Launches?{
         return try {
-            client.query(LaunchListQuery()).await()?.data?.launches?.launches?.filterNotNull()
+            client.query(LaunchListQuery(cursor = Input.fromNullable(cursor))).await()?.data?.launches
         }catch (e : Throwable){
             Log.d("LaunchList", "Failure", e)
             null
