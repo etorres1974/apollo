@@ -3,7 +3,9 @@ package com.example.rocketreserver.Presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.rocketreserver.LaunchListQuery
+import com.example.rocketreserver.R
 import com.example.rocketreserver.databinding.LaunchItemBinding
 
 class LaunchListAdapter(
@@ -24,6 +26,13 @@ class LaunchListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val launch = launches.get(position)
-        holder.binding.site.text = launch.site ?: "Launch site unknown"
+        with(holder.binding){
+            site.text = launch.site ?: "Launch site unknown"
+            missionName.text = launch.mission?.name
+            missionPatch.load(launch.mission?.missionPatch){
+                placeholder(R.drawable.ic_placeholder)
+            }
+        }
+
     }
 }
