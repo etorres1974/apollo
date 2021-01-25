@@ -1,9 +1,9 @@
-package com.example.rocketreserver
+package com.example.rocketreserver.Data
 
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.await
+import com.example.rocketreserver.LaunchListQuery
 
 class Apollo {
     val graphqlURL = "https://apollo-fullstack-tutorial.herokuapp.com"

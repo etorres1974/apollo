@@ -1,19 +1,19 @@
-package com.example.rocketreserver
+package com.example.rocketreserver.Presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.apollographql.apollo.coroutines.await
+import com.example.rocketreserver.Data.Apollo
+import com.example.rocketreserver.LaunchListQuery
 import com.example.rocketreserver.databinding.LaunchListFragmentBinding
 
 class LaunchListFragment : Fragment() {
     private lateinit var binding: LaunchListFragmentBinding
-    val apollo = Apollo()
+    private val apollo = Apollo()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,8 +26,11 @@ class LaunchListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenResumed {
+            binding.loading.show()
             apollo.queryLaunches()?.let { setupAdapter(it) }
+            binding.loading.hide()
         }
+
     }
 
     private fun setupAdapter(list: List<LaunchListQuery.Launch>) {
