@@ -37,6 +37,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version")
 
+    implementation("com.apollographql.apollo:apollo-api-jvm:2.5.2")
     implementation ("com.apollographql.apollo:apollo-runtime:2.5.2")
     implementation ("com.apollographql.apollo:apollo-coroutines-support:2.5.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
@@ -59,5 +60,9 @@ dependencies {
 }
 
 apollo {
+    schemaFile.set(file("src/main/graphql/schema.graphql"))
+    graphqlSourceDirectorySet.srcDir("src/main/graphql")
+    graphqlSourceDirectorySet.exclude("schema.graphql")
+    graphqlSourceDirectorySet.exclude(".graphqlconfig")
     generateKotlinModels.set(true)
 }

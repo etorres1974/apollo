@@ -4,7 +4,8 @@ import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.await
-import com.example.rocketreserver.LaunchListQuery
+import queries.LaunchListQuery
+
 
 class Apollo {
     val graphqlURL = "https://apollo-fullstack-tutorial.herokuapp.com"

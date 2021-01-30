@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rocketreserver.Data.Apollo
-import com.example.rocketreserver.LaunchListQuery
 import com.example.rocketreserver.databinding.LaunchListFragmentBinding
 import kotlinx.coroutines.channels.Channel
+import queries.LaunchListQuery
 
 class LaunchListFragment : Fragment() {
     private lateinit var binding: LaunchListFragmentBinding

@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.example.rocketreserver.LaunchListQuery
 import com.example.rocketreserver.R
 import com.example.rocketreserver.databinding.LaunchItemBinding
+import queries.LaunchListQuery
 
 class LaunchListAdapter(
     val launches : List<LaunchListQuery.Launch>
